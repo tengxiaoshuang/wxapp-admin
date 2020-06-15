@@ -91,7 +91,7 @@ export default {
       });
     },
     editUpdateHandle(Id,ststus) {
-      if(status==0){
+      if(status=='0'){
         var show = true
       }else{
         var show = false

@@ -9,7 +9,7 @@
         <textarea disabled class="textarea" placeholder="请输入" maxlength="300" @input="descInput" v-model="data.intro" />
         <span class="numberV">{{ txtVal }}/300</span>
       </el-form-item>
-      <el-form-item label="协会LOGO" prop="title"><el-input disabled v-model="data.logoFiles" clearable /></el-form-item>
+      <el-form-item label="协会LOGO" prop="title"><el-image :src="data.logoFiles"></el-image></el-form-item>
       <el-form-item label="代理人证人职位" prop="title"><el-input disabled v-model="data.post" clearable /></el-form-item>
       <el-form-item label="代理人证人电话" prop="title"><el-input disabled v-model="data.phone" clearable /></el-form-item>
       <el-form-item label="协会官网" prop="title"><el-input disabled v-model="data.website" clearable /></el-form-item>

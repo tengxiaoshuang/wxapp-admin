@@ -29,7 +29,7 @@
       <el-table-column label="关注项目所处地区" align="center" prop="focusArea"></el-table-column>
     </el-table>
     <div class="title">任职履历</div>
-    <el-table key="listTable" border :data="data.resume" fit highlight-current-row style="width: 100%;margin-left:20px">
+    <el-table key="listTable" border :data="data.resumeList" fit highlight-current-row style="width: 100%;margin-left:20px">
       <el-table-column label="序号" type="index" align="left" width="60"></el-table-column>
       <el-table-column align="center" prop="company" label="所在公司/机构"></el-table-column>
       <el-table-column align="center" prop="position" label="职位"></el-table-column>
@@ -37,19 +37,19 @@
       <el-table-column align="center" prop="endTime" label="结束时间"></el-table-column>
     </el-table>
     <div class="title">教育经历</div>
-    <el-table border :data="data.educations" style="width: 100%;margin-left:25px">
+    <el-table border :data="data.educationalList" style="width: 100%;margin-left:25px">
       <el-table-column label="学校" align="center" prop="school"></el-table-column>
       <el-table-column label="专业" align="center" prop="major"></el-table-column>
       <el-table-column label="学历" align="center" prop="educationalBg"></el-table-column>
       <el-table-column align="center" prop="startTimeEd" label="开始时间"></el-table-column>
       <el-table-column align="center" prop="startTimeEd" label="结束时间"></el-table-column>
     </el-table>
-    <div class="title">获奖经历</div>
+    <!-- <div class="title">获奖经历</div>
     <el-table border :data="data.win" style="width: 100%;margin-left:20px">
       <el-table-column label="获奖名称" align="center" prop="awardName"></el-table-column>
       <el-table-column label="获奖时间" align="center" prop="AwardTime"></el-table-column>
       <el-table-column label="颁奖单位" align="center" prop="awardUnit"></el-table-column>
-    </el-table>
+    </el-table> -->
     <div v-if="show" slot="footer" class="dialog-footer">
       <el-button type="primary" :loading="modalLoading" @click="enterConfirm('1')">通过</el-button>
       <el-button type="primary" :loading="modalLoading" @click="enterConfirm('0')">不通过</el-button>
@@ -99,20 +99,20 @@ export default {
           getListById(32).then(data => {
             this.data = data.data;
             this.formData.push(data.data);
-            this.data.resume = data.data.resume.map(x => ({
+            this.data.resumeList = data.data.resumeList.map(x => ({
               ...x,
               startTime: moment(x.startTime).format('YYYY-MM-DD'),
               endTime: moment(x.endTime).format('YYYY-MM-DD')
             }));
-            this.data.educations = data.data.educations.map(x => ({
+            this.data.educationalList = data.data.educationalList.map(x => ({
               ...x,
               startTime: moment(x.startTime).format('YYYY-MM-DD'),
               endTime: moment(x.endTime).format('YYYY-MM-DD')
             }));
-            this.data.win = data.data.win.map(x => ({
-              ...x,
-              AwardTime: moment(x.AwardTime).format('YYYY-MM-DD'),
-            }));
+            // this.data.win = data.data.win.map(x => ({
+            //   ...x,
+            //   AwardTime: moment(x.AwardTime).format('YYYY-MM-DD'),
+            // }));
           });
         }
       });

@@ -10,7 +10,7 @@
         <textarea disabled class="textarea" placeholder="请输入" maxlength="300" @input="descInput" v-model="data.organizationIntro" />
         <span class="numberV">{{ txtVal }}/300</span>
       </el-form-item>
-      <el-form-item label="企业LOGO" prop="title"><el-input disabled v-model="data.logoFiles" clearable /></el-form-item>
+      <el-form-item label="企业LOGO" prop="title"><el-image :src="data.logoFiles"></el-image></el-form-item>
       <el-form-item label="企业官网" prop="title"><el-input disabled v-model="data.officialWebsite" clearable /></el-form-item>
       <el-form-item label="企业地址" prop="title"><el-input disabled v-model="data.address" clearable /></el-form-item>
       <el-form-item label="企业类型" prop="title"><el-input disabled v-model="data.organizationType" clearable /></el-form-item>
@@ -61,7 +61,7 @@ export default {
     //   this.txtVal = this.formData.info.length;
     // },
     descInput() {
-      this.txtVal = this.data.info.length;
+      this.txtVal = this.data.organizationIntro.length;
     },
     init(Id, show) {
       this.visible = true;
@@ -71,7 +71,7 @@ export default {
         if (Id) {
           getListById(Id).then(data => {
             this.data = data.data;
-            this.txtVal = data.data.info.length;
+            this.txtVal = data.data.organizationIntro.length;
             this.formData.push(data.data);
           });
         }
