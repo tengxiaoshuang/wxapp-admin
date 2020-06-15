@@ -54,32 +54,22 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
-
   {
-    path: '/example',
+    path: '/userList',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
+    redirect: '/userList',
+    children: [{
+      path: 'userList',
+      name: 'UserList',
+      component: () => import('@/views/userList/index'),
+      meta: { title: '用户列表', icon: 'table' }
+    }]
   },
 
   {
     path: '/form',
     component: Layout,
+    hidden:true,
     children: [
       {
         path: 'index',
@@ -93,6 +83,7 @@ export const constantRoutes = [
   {
     path: '/nested',
     component: Layout,
+    hidden:true,
     redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
@@ -147,9 +138,59 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/auditList',
+    component: Layout,
+    redirect: '/auditList/entrepreneur',
+    name: 'AuditList',
+    meta: {
+      title: '审核列表',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'entrepreneur',
+        component: () => import('@/views/auditList/entrepreneur/index'), // Parent router-view
+        name: 'Entrepreneur',
+        meta: { title: '创业者' },
+      },
+      {
+        path: 'investors',
+        component: () => import('@/views/auditList/investors/index'), // Parent router-view
+        name: 'Investors',
+        meta: { title: '投资人' },
+      },
+      {
+        path: 'investmentAgency',
+        component: () => import('@/views/auditList/investmentAgency/index'),
+        meta: { title: '投资机构' }
+      },
+      {
+        path: 'industry',
+        component: () => import('@/views/auditList/industry/index'),
+        meta: { title: '企业产业' }
+      },
+      {
+        path: 'service',
+        component: () => import('@/views/auditList/service/index'),
+        meta: { title: '服务机构' }
+      },
+      {
+        path: 'government',
+        component: () => import('@/views/auditList/government/index'),
+        meta: { title: '政府协会' }
+      },
+      {
+        path: 'other',
+        component: () => import('@/views/auditList/other/index'),
+        meta: { title: '其他机构' }
+      },
+    ]
+  },
 
   {
     path: 'external-link',
+    hidden:true,
     component: Layout,
     children: [
       {
