@@ -38,7 +38,7 @@ module.exports = {
     },
     proxy: {
           '/api': {
-            target: `http://localhost:3000`, // 这个链接是要代理到的api地址
+            target: `http://localhost:2222`, // 这个链接是要代理到的api地址
             changeOrigin: true,
             pathRewrite: {
               '^/api': ''

@@ -187,6 +187,33 @@ export const constantRoutes = [
       },
     ]
   },
+  {
+    path: '/main',
+    component: Layout,
+    redirect: '/main/enterprises',
+    name: 'Main',
+    meta: {
+      title: '主板块',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'enterprises',
+        component: () => import('@/views/main/enterprises/index'), // Parent router-view
+        name: 'Enterprises',
+        meta: { title: '创业企业' },
+      },
+      {
+        path: 'investors',
+        // hidden:true,
+        component: () => import('@/views/main/investors/index'), // Parent router-view
+        name: 'Investors',
+        meta: { title: '投资人' },
+      },
+
+    ]
+  },
+
 
   {
     path: 'external-link',

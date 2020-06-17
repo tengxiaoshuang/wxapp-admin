@@ -27,6 +27,27 @@ export function audit(id) {
     method: 'get',
   })
 }
+export function enterprisesCreate(data) {
+  return request({
+    url: '/v1/enterprises/create',
+    method: 'post',
+    data
+  })
+}
+export function getEnterprisesById(id) {
+  return request({
+    url: '/v1/enterprises/getListById?id='+id,
+    method: 'get',
+  })
+}
+export function enterprisesUpdate(data) {
+  return request({
+    url: '/v1/enterprises/update',
+    method: 'post',
+    data
+  })
+}
+
 export function delUser(id) {
   return request({
     url: '/v1/user/del?id='+id,

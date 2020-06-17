@@ -2,22 +2,12 @@
   <div class="app-container">
     <edit-order ref="editOrder" v-if="editOrderVisible" @updata="updataTable" :visible.sync="editOrderVisible"></edit-order>
     <add-order ref="addOrder" v-if="addOrderVisible" @updata="updataTable" :visible.sync="addOrderVisible"></add-order>
-    <!-- <el-button type="success" size="small" @click="addUpdateHandle()">新增</el-button> -->
+    <el-button type="success" size="small" @click="addUpdateHandle()">新增</el-button>
     <div class="filter-container" style="display: inline-block;padding-left: 20px;">
-      <!-- <el-input
-        clearable
-        @clear="handleFilter"
-        v-model="listQuery.phone"
-        placeholder="手机号"
-        style="width: 130px;"
-        class="filter-item"
-        @change="handleFilter"
-        @keyup.enter.native="handleFilter"
-      /> -->
       <el-input
         clearable
         @clear="handleFilter"
-        v-model="listQuery.nickname"
+        v-model="listQuery.name"
         placeholder="姓名"
         style="width: 130px;"
         class="filter-item"
@@ -28,25 +18,16 @@
     </div>
     <el-table key="listTable" v-loading="listLoading" :data="list" fit highlight-current-row style="width: 100%;">
       <el-table-column label="序号" type="index" align="left" width="60" :index="index => index + 1 + listQuery.size * (listQuery.page - 1)"></el-table-column>
-
-      <el-table-column prop="nickname" align="center" label="昵称"></el-table-column>
-      <!-- <el-table-column prop="phone" align="center" label="手机号"></el-table-column> -->
-      <el-table-column label="头像">
-        <template slot-scope="scope">
-          <el-popover trigger="hover" placement="top">
-            <el-image :src="scope.row.avatarUrl"></el-image>
-            <div slot="reference" class="name-wrapper"><el-tag size="medium">头像</el-tag></div>
-          </el-popover>
-        </template>
-      </el-table-column>
-      <el-table-column prop="type" align="center" :formatter="typeFormat" label="类型"></el-table-column>
+      <!-- <el-table-column prop="id" align="center" style="display: none;" label="id"></el-table-column> -->
+      <el-table-column prop="name" align="center" label="昵称"></el-table-column>
+      <el-table-column prop="wechart" align="center" label="微信号"></el-table-column>
+      <el-table-column prop="email" align="center" label="邮箱"></el-table-column>
+      <el-table-column prop="position" align="center" label="职位"></el-table-column>
+      <el-table-column prop="enterprise" align="center" label="公司名称"></el-table-column>
+      <!-- <el-table-column prop="status" align="center" :formatter="typeFormat" label="类型"></el-table-column> -->
       <el-table-column label="操作" align="center" width="100" class-name="small-padding fixed-width">
         <template slot-scope="{ row }">
-          <div style="display: flex; justify-content: center;">
-            <!-- <router-link tag="a" class="btn" target="_blank" :to="{ name: 'studentList', query: { courseId: row.courseId } }">详情</router-link> -->
-            <el-button size="small" @click="editUpdateHandle(row.id)">编辑</el-button>
-            <!-- <el-button type="danger" size="small" @click="deleteUpdateHandle(row.id)">删除</el-button> -->
-          </div>
+          <div style="display: flex; justify-content: center;"><el-button size="small" @click="editUpdateHandle(row.id)">编辑</el-button></div>
         </template>
       </el-table-column>
     </el-table>
@@ -57,7 +38,7 @@
 
 <script type="text/babel">
 import { mapGetters } from 'vuex';
-import { getList, delUser } from '@/api/userList';
+import { getList } from '@/api/entrepreneur';
 import Pagination from '@/components/Pagination';
 import Edit from './edit';
 import Add from './add';
@@ -87,20 +68,13 @@ export default {
     this.fetchData();
   },
   methods: {
-    typeFormat(row, column) {
-      if (row.type == 0) {
-        return '未认证';
-      }
-      if (row.type == 1) {
-        return '已认证';
-      }
-      if (row.type == 2) {
-        return 'VIP';
-      }
-      if (row.type == 3) {
-        return 'SVIP';
-      }
-    },
+    // typeFormat(row, column) {
+    //   if (row.status == 0) {
+    //     return '审核中';
+    //   }else{
+    //     return '已审核';
+    //   }
+    // },
     fetchData() {
       this.listLoading = true;
       let params = JSON.parse(JSON.stringify(this.listQuery));
@@ -115,6 +89,11 @@ export default {
       });
     },
     editUpdateHandle(Id) {
+      // if(status==0){
+      //   var show = true
+      // }else{
+      //   var show = false
+      // }
       this.editOrderVisible = true;
       this.$nextTick(() => {
         this.$refs.editOrder.init(Id);
@@ -128,18 +107,18 @@ export default {
         // this.$refs.Edit.init(courseId)
       });
     },
-    deleteUpdateHandle(id) {
-      this.$alert('确定删除该用户吗？', '删除', {
-        confirmButtonText: '确定',
-        callback: action => {
-          if (action == 'confirm') {
-            delUser(id).then(res => {
-              this.updataTable();
-            });
-          }
-        }
-      });
-    },
+    // deleteUpdateHandle(id) {
+    //   this.$alert('确定删除该用户吗？', '删除', {
+    //     confirmButtonText: '确定',
+    //     callback: action => {
+    //       if (action == 'confirm') {
+    //         delUser(id).then(res => {
+    //           this.updataTable();
+    //         });
+    //       }
+    //     }
+    //   });
+    // },
     updataTable() {
       this.fetchData();
     },

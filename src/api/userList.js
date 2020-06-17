@@ -15,6 +15,20 @@ export function getList(params) {
     params: params
   })
 }
+export function getUserById(id) {
+  return request({
+    url: '/v1/user/getUserById?id='+id,
+    method: 'get',
+  })
+}
+export function updateUser(data) {
+  return request({
+    url: '/v1/user/updateUser',
+    method: 'post',
+    data
+  })
+}
+
 export function delUser(id) {
   return request({
     url: '/v1/user/del?id='+id,

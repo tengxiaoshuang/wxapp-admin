@@ -47,8 +47,8 @@
           </el-table>
         </template>
       </el-table-column> -->
-      <el-table-column label="姓名" align="center" prop="categoryName"></el-table-column>
-      <el-table-column label="职位" align="center" prop="categoryPosition"></el-table-column>
+      <el-table-column label="姓名" align="center" prop="name"></el-table-column>
+      <el-table-column label="职位" align="center" prop="position"></el-table-column>
       <el-table-column label="个人履历" align="center" prop="personResume"></el-table-column>
       <el-table-column label="任职履历" align="center" prop="positionResume"></el-table-column>
       <el-table-column label="所在公司" align="center" prop="company"></el-table-column>
