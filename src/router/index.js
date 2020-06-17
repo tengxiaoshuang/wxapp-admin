@@ -222,7 +222,7 @@ export const constantRoutes = [
      path: 'enterprises',
      component: () => import('@/views/main/enterprises/index'), // Parent router-view
      name: 'Enterprises',
-     meta: { title: '创业企业',icon: 'table' },
+     meta: { title: '产业企业',icon: 'table' },
     }]
   },
   {
