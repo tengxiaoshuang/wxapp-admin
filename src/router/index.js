@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '管理中心', icon: 'dashboard' }
     }]
   },
   {
@@ -62,7 +62,7 @@ export const constantRoutes = [
       path: 'userList',
       name: 'UserList',
       component: () => import('@/views/userList/index'),
-      meta: { title: '用户列表', icon: 'table' }
+      meta: { title: '用户管理', icon: 'table' }
     }]
   },
 
@@ -144,7 +144,7 @@ export const constantRoutes = [
     redirect: '/auditList/entrepreneur',
     name: 'AuditList',
     meta: {
-      title: '审核列表',
+      title: '认证管理',
       icon: 'nested'
     },
     children: [
@@ -190,6 +190,7 @@ export const constantRoutes = [
   {
     path: '/main',
     component: Layout,
+    hidden:true,
     redirect: '/main/enterprises',
     name: 'Main',
     meta: {
@@ -208,10 +209,33 @@ export const constantRoutes = [
         // hidden:true,
         component: () => import('@/views/main/investors/index'), // Parent router-view
         name: 'Investors',
-        meta: { title: '投资人' },
+        meta: { title: '投资机构' },
       },
 
     ]
+  },
+  {
+    path: '/enterprises',
+    component: Layout,
+    redirect: '/enterprises',
+    children: [{
+     path: 'enterprises',
+     component: () => import('@/views/main/enterprises/index'), // Parent router-view
+     name: 'Enterprises',
+     meta: { title: '创业企业',icon: 'table' },
+    }]
+  },
+  {
+    path: '/investors',
+    component: Layout,
+    redirect: '/investors',
+    children: [{
+      path: 'investors',
+      // hidden:true,
+      component: () => import('@/views/main/investors/index'), // Parent router-view
+      name: 'Investors',
+      meta: { title: '投资机构',icon: 'table'},
+    }]
   },
 
 

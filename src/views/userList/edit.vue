@@ -11,7 +11,8 @@
           <el-option label="未认证" value="0"></el-option>
           <el-option label="已认证" value="1"></el-option>
           <el-option label="星会员" value="2"></el-option>
-          <el-option label="vvip" value="3"></el-option>
+          <el-option label="VIP" value="3"></el-option>
+          <el-option label="SVP" value="4"></el-option>
         </el-select>
       </el-form-item>
       <!-- <el-form-item label="教师图片" prop="avatarUrl" :rules="[{ required: true, message: '请上传图片', trigger: 'change' }]">
