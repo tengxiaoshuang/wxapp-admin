@@ -237,6 +237,54 @@ export const constantRoutes = [
       meta: { title: '投资机构',icon: 'table'},
     }]
   },
+  {
+    path: '/banner',
+    component: Layout,
+    redirect: '/banner',
+    children: [{
+      path: 'banner',
+      // hidden:true,
+      component: () => import('@/views/banner/index'), // Parent router-view
+      name: 'Bnner',
+      meta: { title: '轮播图',icon: 'table'},
+    }]
+  },
+  {
+    path: '/news',
+    component: Layout,
+    redirect: '/news',
+    children: [{
+      path: 'news',
+      // hidden:true,
+      component: () => import('@/views/news/index'), // Parent router-view
+      name: 'News',
+      meta: { title: '融资速递',icon: 'table'},
+    }]
+  },
+  {
+    path: '/dynamic',
+    component: Layout,
+    redirect: '/dynamic',
+    children: [{
+      path: 'dynamic',
+      // hidden:true,
+      component: () => import('@/views/dynamic/index'), // Parent router-view
+      name: 'Dynamic',
+      meta: { title: '行业动态',icon: 'table'},
+    }]
+  },
+  {
+    path: '/infomation',
+    component: Layout,
+    redirect: '/infomation',
+    children: [{
+      path: 'infomation',
+      // hidden:true,
+      component: () => import('@/views/infomation/index'), // Parent router-view
+      name: 'Infomation',
+      meta: { title: '企业资讯',icon: 'table'},
+    }]
+  },
 
 
   {
