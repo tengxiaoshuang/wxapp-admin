@@ -15,7 +15,8 @@
         </template>
       </el-table-column>
       <el-table-column prop="title" align="center" label="标题"></el-table-column>
-      <!-- <el-table-column prop="type" align="center" label="标签"></el-table-column> -->
+      <!-- <el-table-column prop="describe" align="center" label="描述"></el-table-column> -->
+      <el-table-column prop="type" align="center" label="标签"></el-table-column>
       <el-table-column align="center" label="描述">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
@@ -44,7 +45,7 @@
 
 <script type="text/babel">
 import { mapGetters } from 'vuex';
-import { getList, delById } from '@/api/dynamic';
+import { getList, delById } from '@/api/hotDemand';
 // import Pagination from '@/components/Pagination'
 import Edit from './edit';
 import Add from './add';
@@ -103,7 +104,7 @@ export default {
       });
     },
     deleteUpdateHandle(id) {
-      this.$alert('确定删除该动态吗？', '删除', {
+      this.$alert('确定删除该需求吗？', '删除', {
         confirmButtonText: '确定',
         callback: action => {
           if (action == 'confirm') {

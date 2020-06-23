@@ -285,7 +285,18 @@ export const constantRoutes = [
       meta: { title: '企业资讯',icon: 'table'},
     }]
   },
-
+{
+    path: '/hotDemand',
+    component: Layout,
+    redirect: '/hotDemand',
+    children: [{
+      path: 'hotDemand',
+      // hidden:true,
+      component: () => import('@/views/hotDemand/index'), // Parent router-view
+      name: 'HotDemand',
+      meta: { title: '需求管理',icon: 'table'},
+    }]
+  },
 
   {
     path: 'external-link',

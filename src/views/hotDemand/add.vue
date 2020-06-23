@@ -35,7 +35,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import { getToken, createinfomation } from '@/api/infomation';
+import { getToken, createhotDemand } from '@/api/hotDemand';
 // import upload from '@/components/upload';
 export default {
   name: 'addfrom',
@@ -62,17 +62,49 @@ export default {
       imagelist: [],
       options: [
         {
-          value: '融资',
-          label: '融资'
+          value: '找投资',
+          label: '找投资'
         },
         {
-          value: '获奖',
-          label: '获奖'
+          value: '找贷款',
+          label: '找贷款'
         },
         {
-          value: '新品发布',
-          label: '新品发布'
-        } 
+          value: '找咨询',
+          label: '找咨询'
+        },
+        {
+          value: '找培训',
+          label: '找培训'
+        },
+        {
+          value: '找活动',
+          label: '找活动'
+        },
+        {
+          value: '找客户',
+          label: '找客户'
+        },
+        {
+          value: '找技术',
+          label: '找技术'
+        },
+        {
+          value: '找人才',
+          label: '找人才'
+        },
+        {
+          value: '找宣传',
+          label: '找宣传'
+        },
+        {
+          value: '找供应链',
+          label: '找供应链'
+        },
+        {
+          value: '其他',
+          label: '其他'
+        }
       ]
     };
   },
@@ -108,7 +140,7 @@ export default {
       this.$refs['enterForm'].validate(valid => {
         if (valid) {
           let postData = { ...this.formData };
-          createinfomation(postData).then(res => {
+          createhotDemand(postData).then(res => {
             this.$emit('update:visible', false);
             this.$emit('updata');
           });
