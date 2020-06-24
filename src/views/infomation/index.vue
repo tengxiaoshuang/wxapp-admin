@@ -15,14 +15,14 @@
         </template>
       </el-table-column>
       <el-table-column prop="title" align="center" label="标题"></el-table-column>
-      <el-table-column prop="describe" align="center" label="描述"></el-table-column>
+      <!-- <el-table-column prop="describe" align="center" label="描述"></el-table-column> -->
       <el-table-column prop="type" align="center" label="标签"></el-table-column>
-      <el-table-column align="center" label="内容">
+      <el-table-column align="center" label="描述">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
-            <div>{{ scope.row.info }}</div>
+            <div>{{ scope.row.describe }}</div>
             <div slot="reference" class="name-wrapper">
-              <el-tag size="medium">内容</el-tag>
+              <el-tag size="medium">描述</el-tag>
             </div>
           </el-popover>
         </template>
