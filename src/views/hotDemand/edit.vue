@@ -9,8 +9,8 @@
       <!-- <el-form-item label="描述" :prop="'describe'" :rules="[{ required: true, message: '描述不能为空', trigger: 'change' }]">
         <el-input v-model="formData.describe" placeholder="请输入描述" />
       </el-form-item> -->
-      <el-form-item label="类型" :prop="'type'" :rules="[{ required: true, message: '类型不能为空', trigger: 'change' }]">
-        <el-input v-model="formData.type" placeholder="请输入类型" />
+      <el-form-item label="标签" :rules="[{ required: true, message: '标签不能为空', trigger: 'change' }]">
+        <el-select v-model="formData.type" placeholder="请选择"><el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option></el-select>
       </el-form-item>
       <el-form-item label="描述" :prop="'describe'":rules="[{ required: true, message: '请输入描述', trigger: 'change' }]">
         <textarea class="textarea" placeholder="请输入" maxlength="200" @input="descInput" v-model="formData.describe" />
@@ -62,7 +62,25 @@ export default {
       total: 0,
       hideUpload: false,
       limitCount: 1,
-      imagelist: []
+      imagelist: [],
+      options: [
+        {
+          value: '融资',
+          label: '融资'
+        },
+        {
+          value: '人才',
+          label: '人才'
+        },
+        {
+          value: '资源合作',
+          label: '资源合作'
+        },
+        {
+          value: '技术',
+          label: '技术'
+        }
+      ]
     };
   },
 

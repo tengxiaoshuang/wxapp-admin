@@ -62,48 +62,20 @@ export default {
       imagelist: [],
       options: [
         {
-          value: '找投资',
-          label: '找投资'
+          value: '融资',
+          label: '融资'
         },
         {
-          value: '找贷款',
-          label: '找贷款'
+          value: '人才',
+          label: '人才'
         },
         {
-          value: '找咨询',
-          label: '找咨询'
+          value: '资源合作',
+          label: '资源合作'
         },
         {
-          value: '找培训',
-          label: '找培训'
-        },
-        {
-          value: '找活动',
-          label: '找活动'
-        },
-        {
-          value: '找客户',
-          label: '找客户'
-        },
-        {
-          value: '找技术',
-          label: '找技术'
-        },
-        {
-          value: '找人才',
-          label: '找人才'
-        },
-        {
-          value: '找宣传',
-          label: '找宣传'
-        },
-        {
-          value: '找供应链',
-          label: '找供应链'
-        },
-        {
-          value: '其他',
-          label: '其他'
+          value: '技术',
+          label: '技术'
         }
       ]
     };
