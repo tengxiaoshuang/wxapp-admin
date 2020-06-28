@@ -4,7 +4,7 @@
     <add-order ref="addOrder" v-if="addOrderVisible" @updata="updataTable" :visible.sync="addOrderVisible"></add-order>
     <el-button type="success" size="small" @click="addUpdateHandle()">新增</el-button>
     <el-table key="listTable" v-loading="listLoading" :data="list" fit highlight-current-row style="width: 100%;">
-      <el-table-column label="序号" type="index" align="left" width="60" :index="index => index + 1 + listQuery.size * (listQuery.page-1)"></el-table-column>
+      <el-table-column label="序号" type="index" align="left" width="60" :index="index => index + 1 + listQuery.size * (listQuery.page - 1)"></el-table-column>
       <!-- <el-table-column prop="id" align="center" style="display: none;" label="id"></el-table-column> -->
       <el-table-column align="center" label="logo">
         <template slot-scope="scope">
@@ -21,9 +21,7 @@
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
             <div>{{ scope.row.describe }}</div>
-            <div slot="reference" class="name-wrapper">
-              <el-tag size="medium">描述</el-tag>
-            </div>
+            <div slot="reference" class="name-wrapper"><el-tag size="medium">描述</el-tag></div>
           </el-popover>
         </template>
       </el-table-column>
@@ -32,7 +30,8 @@
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{ row }">
           <div style="display: flex; justify-content: center;">
-            <el-button type="warning" size="small" @click="editUpdateHandle(row.id)">编辑</el-button>
+            <!-- <el-button type="warning" size="small" @click="editUpdateHandle(row.id)">编辑</el-button> -->
+            <el-button size="small" @click="editUpdateHandle(row.id, row.status)">{{ row.status == '1' ? '编辑' : '审核' }}</el-button>
             <el-button type="danger" size="small" @click="deleteUpdateHandle(row.id)">删除</el-button>
           </div>
         </template>
@@ -68,7 +67,7 @@ export default {
       listQuery: {
         page: 1,
         size: 10
-      },
+      }
     };
   },
   created() {
@@ -81,18 +80,24 @@ export default {
       Object.keys(params).forEach(key => {
         if (params[key] === '') delete params[key];
       });
-      params.page = params.page-1
+      params.page = params.page - 1;
       getList(params).then(data => {
-        console.log(data)
+        console.log(data);
         this.list = data.data.rows;
         this.total = data.data.count;
         this.listLoading = false;
       });
     },
-    editUpdateHandle(Id) {
+    editUpdateHandle(Id, ststus) {
+      if (status == '0') {
+        var show = true;
+      } else {
+        var show = false;
+      }
       this.editOrderVisible = true;
       this.$nextTick(() => {
-        this.$refs.editOrder.init(Id);
+        console.log(show);
+        this.$refs.editOrder.init(Id, show);
         // this.$refs.Edit.init(courseId)
       });
     },
@@ -121,7 +126,7 @@ export default {
     handleFilter() {
       this.listQuery.page = 1;
       this.fetchData();
-    },
+    }
   }
 };
 </script>

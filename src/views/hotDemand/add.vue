@@ -6,8 +6,11 @@
       <el-form-item label="标题" :rules="[{ required: true, message: '标题不能为空', trigger: 'change' }]">
         <el-input v-model="formData.title" placeholder="请输入标题" />
       </el-form-item>
+      <el-form-item label="状态"><el-input v-model="formData.status" placeholder="请输入标题" /></el-form-item>
       <el-form-item label="标签" :rules="[{ required: true, message: '标签不能为空', trigger: 'change' }]">
-        <el-select v-model="formData.type" placeholder="请选择"><el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option></el-select>
+        <el-select v-model="formData.type" placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="描述" :rules="[{ required: true, message: '请输入描述', trigger: 'change' }]">
         <textarea class="textarea" placeholder="请输入" maxlength="200" @input="descInput" v-model="formData.describe" />
@@ -98,6 +101,7 @@ export default {
     },
     remove(file, fileList) {
       this.hideUpload = fileList.length >= this.limitCount;
+      this.formData.url = ''
     },
     afterSuccessUpload(res) {
       this.formData.url = 'http://apologize.maodoulive.com/' + res.key;
@@ -111,6 +115,7 @@ export default {
     enterConfirm(val) {
       this.$refs['enterForm'].validate(valid => {
         if (valid) {
+          this.formData.status = '1';
           let postData = { ...this.formData };
           createhotDemand(postData).then(res => {
             this.$emit('update:visible', false);

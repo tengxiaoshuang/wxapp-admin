@@ -3,12 +3,15 @@
     <h4 slot="title">新增</h4>
     <button type="button" aria-label="Close" class="el-dialog__headerbtn" @click.stop="cancelModal"><i class="el-dialog__close el-icon el-icon-close"></i></button>
     <el-form @submit.native.prevent ref="enterForm" size="mini" :model="formData" label-position="left" label-width="auto" style="max-width: 450px;">
-     <el-form-item label="链接" prop="url">
-        <el-input type="name" name="url" autocomplete="on" v-model="formData.url" clearable />
+     <el-form-item label="标题" prop="title">
+        <el-input type="name" name="title" autocomplete="on" v-model="formData.title" clearable />
       </el-form-item>
       <el-form-item label="内容" prop="info" :rules="[{ required: true, message: '请输入内容', trigger: 'change' }]">
         <textarea class="textarea" placeholder="请输入" maxlength="200" @input="descInput" v-model="formData.info" />
         <span class="numberV">{{ txtVal }}/200</span>
+      </el-form-item>
+      <el-form-item label="时间" :prop="'create_time'" :rules="[{ required: true, message: '时间不能为空', trigger: 'change' }]">
+        <el-date-picker v-model="formData.create_time" type="date"></el-date-picker>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer"><el-button type="primary" :loading="modalLoading" @click="enterConfirm(formData)">确认</el-button></div>
@@ -32,9 +35,9 @@ export default {
       txtVal: 0,
       formData: {
         id: '',
-        url: '',
+        title: '',
         info: '',
-
+        create_time: '',
       },
       modalLoading: false,
       total: 0

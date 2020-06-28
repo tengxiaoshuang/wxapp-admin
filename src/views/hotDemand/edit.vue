@@ -10,13 +10,15 @@
         <el-input v-model="formData.describe" placeholder="请输入描述" />
       </el-form-item> -->
       <el-form-item label="标签" :rules="[{ required: true, message: '标签不能为空', trigger: 'change' }]">
-        <el-select v-model="formData.type" placeholder="请选择"><el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option></el-select>
+        <el-select v-model="formData.type" placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="描述" :prop="'describe'":rules="[{ required: true, message: '请输入描述', trigger: 'change' }]">
+      <el-form-item label="描述" :prop="'describe'" :rules="[{ required: true, message: '请输入描述', trigger: 'change' }]">
         <textarea class="textarea" placeholder="请输入" maxlength="200" @input="descInput" v-model="formData.describe" />
         <span class="numberV">{{ txtVal }}/200</span>
       </el-form-item>
-     <!-- <el-form-item label="轮播图" :prop="'url'">
+      <!-- <el-form-item label="轮播图" :prop="'url'">
         <el-upload
           action="http://upload-z1.qiniup.com"
           list-type="picture-card"
@@ -32,12 +34,15 @@
         <el-input style="display: none;" name="url" autocomplete="on" v-model="formData.url" clearable />
       </el-form-item> -->
     </el-form>
-    <div slot="footer" class="dialog-footer"><el-button type="primary" :loading="modalLoading" @click="enterConfirm(formData)">确认</el-button></div>
+    <div slot="footer" class="dialog-footer">
+      <el-button type="primary" :loading="modalLoading" @click="enterConfirm(formData)">确认</el-button>
+      <el-button type="primary" :loading="modalLoading" @click="enterConfirm('0')">取消</el-button>
+    </div>
   </el-dialog>
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import { getToken, getListById,updateById } from '@/api/hotDemand';
+import { getToken, getListById, updateById } from '@/api/hotDemand';
 // import upload from '@/components/upload';
 export default {
   name: 'addfrom',
@@ -52,11 +57,11 @@ export default {
     return {
       txtVal: 0,
       formData: {
-        active:'',
-        url:'',
-        title:'',
-        describe:'',
-        type:''
+        active: '',
+        url: '',
+        title: '',
+        describe: '',
+        type: ''
       },
       modalLoading: false,
       total: 0,
@@ -94,13 +99,14 @@ export default {
   },
   methods: {
     descInput() {
-      this.txtVal = this.formData.active.length;
+      this.txtVal = this.formData.describe.length;
     },
     change(file, fileList) {
       this.hideUpload = fileList.length >= this.limitCount;
     },
     remove(file, fileList) {
       this.hideUpload = fileList.length >= this.limitCount;
+      this.formData.url = '';
     },
     afterSuccessUpload(res) {
       this.formData.url = 'http://apologize.maodoulive.com/' + res.key;
@@ -110,24 +116,29 @@ export default {
       this.$nextTick(() => {
         this.$refs['enterForm'].resetFields();
         getListById(id).then(data => {
-          console.log(data)
+          console.log(data);
           // this.data = data.data;
-          // this.txtVal = data.data.intro.length;
-          this.formData=data.data;
+          this.txtVal = data.data.describe.length;
+          this.formData = data.data;
         });
       });
     },
-   enterConfirm(val) {
-     this.$refs['enterForm'].validate(valid => {
-       if (valid) {
-         let postData = { ...this.formData };
-         updateById(postData).then(res => {
-           this.$emit('update:visible', false);
-           this.$emit('updata');
-         });
-       }
-     });
-   },
+    enterConfirm(int) {
+      if (int == '0') {
+        this.$emit('update:visible', false);
+      } else {
+        this.$refs['enterForm'].validate(valid => {
+          if (valid) {
+            this.formData.status = '1';
+            let postData = { ...this.formData };
+            updateById(postData).then(res => {
+              this.$emit('update:visible', false);
+              this.$emit('updata');
+            });
+          }
+        });
+      }
+    },
     cancelModal() {
       // 关闭弹窗，触发父组件修改visible值
       this.$emit('update:visible', false);

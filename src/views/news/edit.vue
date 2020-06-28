@@ -3,10 +3,13 @@
     <h4 slot="title">新增</h4>
     <button type="button" aria-label="Close" class="el-dialog__headerbtn" @click.stop="cancelModal"><i class="el-dialog__close el-icon el-icon-close"></i></button>
     <el-form ref="enterForm" :model="formData" label-position="left" label-width="auto" style="max-width: 600px;">
-          <el-form-item label="链接" prop="title"><el-input v-model="formData.url" clearable /></el-form-item>
+          <el-form-item label="标题" prop="title"><el-input v-model="formData.title" clearable /></el-form-item>
           <el-form-item label="内容" prop="info">
             <textarea class="textarea" placeholder="请输入" maxlength="200" @input="descInput" v-model="formData.info" />
             <span class="numberV">{{ txtVal }}/200</span>
+          </el-form-item>
+          <el-form-item label="时间">
+            <el-date-picker type="date" placeholder="选择日期" v-model="formData.create_time"></el-date-picker>
           </el-form-item>
         </el-form>
     <div slot="footer" class="dialog-footer"><el-button type="primary" :loading="modalLoading" @click="enterConfirm(formData)">确认</el-button></div>
@@ -45,6 +48,7 @@ export default {
           console.log(data)
           // this.data = data.data;
           this.txtVal = data.data.info.length;
+          // this.formData.create_time = data.data.create_time
           this.formData=data.data;
         });
       });

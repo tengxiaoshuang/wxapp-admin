@@ -15,7 +15,7 @@
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column prop="url" align="center" label="链接"></el-table-column>
+      <el-table-column prop="title" align="center" label="标题"></el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{ row }">
           <div style="display: flex; justify-content: center;">
