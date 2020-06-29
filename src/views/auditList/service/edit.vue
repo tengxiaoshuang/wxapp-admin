@@ -10,7 +10,10 @@
         <textarea disabled class="textarea" placeholder="请输入" maxlength="300" @input="descInput" v-model="data.organizationIntro" />
         <span class="numberV">{{ txtVal }}/300</span>
       </el-form-item>
-      <el-form-item label="机构LOGO" prop="title"><el-image :src="data.logoFiles"></el-image></el-form-item>
+      <el-form-item label="机构LOGO" prop="title">
+        <img :src="data.logoFiles"></img>
+      </el-form-item>
+      
       <el-form-item label="机构官网" prop="title"><el-input disabled v-model="data.officialWebsite" clearable /></el-form-item>
       <el-form-item label="机构地址" prop="title"><el-input disabled v-model="data.address" clearable /></el-form-item>
       <el-form-item label="机构类型" prop="title"><el-input disabled v-model="data.organizationType" clearable /></el-form-item>

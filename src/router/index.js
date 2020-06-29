@@ -220,7 +220,7 @@ export const constantRoutes = [
     redirect: '/enterprises',
     children: [{
      path: 'enterprises',
-     component: () => import('@/views/main/enterprises/index'), // Parent router-view
+     component: () => import('@/views/enterprises/index'), // Parent router-view
      name: 'Enterprises',
      meta: { title: '产业企业',icon: 'table' },
     }]

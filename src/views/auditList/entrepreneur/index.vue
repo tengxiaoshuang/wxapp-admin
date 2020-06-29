@@ -84,7 +84,8 @@ export default {
       Object.keys(params).forEach(key => {
         if (params[key] === '') delete params[key];
       });
-      params.page = params.page-1
+      params.page = params.page-1,
+      params.flag = '1'
       getList(params).then(data => {
         this.list = data.data;
         this.total = data.total;

@@ -19,11 +19,17 @@
     <el-table key="listTable" v-loading="listLoading" :data="list" fit highlight-current-row style="width: 100%;">
       <el-table-column label="序号" type="index" align="left" width="60" :index="index => index + 1 + listQuery.size * (listQuery.page - 1)"></el-table-column>
       <!-- <el-table-column prop="id" align="center" style="display: none;" label="id"></el-table-column> -->
-      <el-table-column prop="name" align="center" label="昵称"></el-table-column>
-      <el-table-column prop="wechart" align="center" label="微信号"></el-table-column>
-      <el-table-column prop="email" align="center" label="邮箱"></el-table-column>
-      <el-table-column prop="position" align="center" label="职位"></el-table-column>
       <el-table-column prop="enterprise" align="center" label="公司名称"></el-table-column>
+      <el-table-column prop="project" align="center" label="项目阶段"></el-table-column>
+      <el-table-column prop="legalName" align="center" label="法人代表"></el-table-column>
+      <el-table-column prop="logoFiles" align="center" label="企业Logo">
+        <template slot-scope="scope">
+          <el-popover trigger="hover" placement="top">
+            <el-image :src="scope.row.logoFiles"></el-image>
+            <div slot="reference" class="name-wrapper"><el-tag size="medium">企业Logo</el-tag></div>
+          </el-popover>
+        </template>
+      </el-table-column>
       <!-- <el-table-column prop="status" align="center" :formatter="typeFormat" label="类型"></el-table-column> -->
       <el-table-column label="操作" align="center" width="100" class-name="small-padding fixed-width">
         <template slot-scope="{ row }">
@@ -60,7 +66,7 @@ export default {
       addOrderVisible: false,
       listQuery: {
         page: 1,
-        size: 10
+        size: 20
       }
     };
   },
@@ -83,6 +89,7 @@ export default {
       });
       params.page = params.page - 1;
       getList(params).then(data => {
+        console.log(data)
         this.list = data.data;
         this.total = data.total;
         this.listLoading = false;
