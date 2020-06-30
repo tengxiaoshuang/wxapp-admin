@@ -81,6 +81,7 @@ export default {
         if (params[key] === '') delete params[key];
       });
       params.page = params.page - 1;
+      params.status = 0;
       getList(params).then(data => {
         console.log(data);
         this.list = data.data.rows;
