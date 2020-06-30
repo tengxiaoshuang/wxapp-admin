@@ -9,7 +9,7 @@
       <el-table-column align="center" label="轮播图">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
-            <el-image :src="scope.row.url"></el-image>
+            <el-image  :src="scope.row.url"></el-image>
             <div slot="reference" class="name-wrapper"><el-tag size="medium">轮播图</el-tag></div>
           </el-popover>
         </template>
@@ -109,3 +109,9 @@ export default {
   }
 };
 </script>
+<style>
+  .el-image__error, .el-image__inner, .el-image__placeholder{
+    height: 100px;
+    width: 200px;
+  }
+</style>

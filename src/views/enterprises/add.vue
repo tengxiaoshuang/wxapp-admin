@@ -207,20 +207,16 @@
         <el-button type="danger" v-if="formData3.financeList.length > 1" size="medium" @click="removeRow(index, 'financeList')">删除</el-button>
       </el-row>
       <el-row><el-button class="btn" type="primary" size="medium" @click="addFinanceList">添加下一个融资经历</el-button></el-row>
-    <div>获奖信息</div>
-    <el-row v-for="(item, index) in formData3.win" :key="index + '?'" style="border-bottom: 1px solid #f0f0f0;padding: 10px;">
-      <el-form-item label="获奖名称" :prop="'win.' + index + '.awardName'">
-        <el-input v-model="item.awardName" placeholder="请输入获奖名称" />
-      </el-form-item>
-      <el-form-item label="颁奖单位" :prop="'win.' + index + '.awardUnit'">
-        <el-input v-model="item.awardUnit" placeholder="请输入颁奖单位" />
-      </el-form-item>
-      <el-form-item label="获奖时间" :prop="'win.' + index + '.awardTime'">
-        <el-date-picker v-model="item.awardTime" type="date" value-format="timestamp"></el-date-picker>
-      </el-form-item>
-      <el-button type="danger" v-if="formData3.win.length > 1" size="medium" @click="removeRow(index, 'win')">删除</el-button>
-    </el-row>
-    <el-row><el-button class="btn" type="primary" size="medium" @click="addWin">添加下一个获奖信息</el-button></el-row>
+      <div>获奖信息</div>
+      <el-row v-for="(item, index) in formData3.win" :key="index + '?'" style="border-bottom: 1px solid #f0f0f0;padding: 10px;">
+        <el-form-item label="获奖名称" :prop="'win.' + index + '.awardName'"><el-input v-model="item.awardName" placeholder="请输入获奖名称" /></el-form-item>
+        <el-form-item label="颁奖单位" :prop="'win.' + index + '.awardUnit'"><el-input v-model="item.awardUnit" placeholder="请输入颁奖单位" /></el-form-item>
+        <el-form-item label="获奖时间" :prop="'win.' + index + '.awardTime'">
+          <el-date-picker v-model="item.awardTime" type="date" value-format="timestamp"></el-date-picker>
+        </el-form-item>
+        <el-button type="danger" v-if="formData3.win.length > 1" size="medium" @click="removeRow(index, 'win')">删除</el-button>
+      </el-row>
+      <el-row><el-button class="btn" type="primary" size="medium" @click="addWin">添加下一个获奖信息</el-button></el-row>
     </el-form>
     <div slot="footer" class="dialog-footer"><el-button type="primary" :loading="modalLoading" @click="submit('formData3')">确认</el-button></div>
   </el-dialog>
@@ -439,7 +435,7 @@ export default {
           {
             awardName: '',
             awardTime: '',
-            awardUnit: '',
+            awardUnit: ''
           }
         ]
       },
@@ -480,8 +476,8 @@ export default {
       this.hideUploadLogo = fileList.length >= this.limitCountLogo;
     },
     removeLogo(file, fileList) {
-      this.hideUploadLogo = fileList.length >= this.limitCountLogo
-      this.formData3.logoFiles = ''
+      this.hideUploadLogo = fileList.length >= this.limitCountLogo;
+      this.formData3.logoFiles = '';
     },
     afterSuccessUploadLogo(res) {
       this.formData3.logoFiles = 'http://apologize.maodoulive.com/' + res.key;
@@ -490,8 +486,8 @@ export default {
       this.hideUploadBp = fileList.length >= this.limitCountBp;
     },
     removeBp(file, fileList) {
-      this.hideUploadBp = fileList.length >= this.limitCountBp
-      this.formData3.bPFiles = ''
+      this.hideUploadBp = fileList.length >= this.limitCountBp;
+      this.formData3.bPFiles = '';
     },
     afterSuccessUploadBp(res) {
       this.formData3.bPFiles = 'http://apologize.maodoulive.com/' + res.key;
@@ -547,7 +543,7 @@ export default {
       this.formData3.win.push({
         awardName: '',
         awardTime: '',
-        awardUnit: '',
+        awardUnit: ''
       });
     },
     // 删除属性列
@@ -558,7 +554,7 @@ export default {
         this.formData3.ownershipList.splice(index, 1);
       } else if (name == 'win') {
         this.formData3.win.splice(index, 1);
-      }else {
+      } else {
         this.formData3.financeList.splice(index, 1);
       }
     },
@@ -617,13 +613,13 @@ export default {
   width: 220px;
   height: 100px;
 }
-.el-input--medium .el-input__inner{
+.el-input--medium .el-input__inner {
   width: 220px;
 }
 .el-form--inline .el-form-item {
   width: 48%;
 }
-.btn{
+.btn {
   margin-bottom: 10px;
 }
 </style>
